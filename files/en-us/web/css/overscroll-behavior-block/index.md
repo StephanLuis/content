@@ -1,14 +1,7 @@
 ---
 title: overscroll-behavior-block
 slug: Web/CSS/overscroll-behavior-block
-tags:
-  - CSS
-  - CSS Box Model
-  - CSS Logical Properties
-  - CSS Property
-  - Reference
-  - overscroll-behavior-block
-  - recipe:css-property
+page-type: css-property
 browser-compat: css.properties.overscroll-behavior-block
 ---
 
@@ -17,6 +10,8 @@ browser-compat: css.properties.overscroll-behavior-block
 The **`overscroll-behavior-block`** CSS property sets the browser's behavior when the block direction boundary of a scrolling area is reached.
 
 See {{cssxref("overscroll-behavior")}} for a full explanation.
+
+## Syntax
 
 ```css
 /* Keyword values */
@@ -31,8 +26,6 @@ overscroll-behavior-block: revert;
 overscroll-behavior-block: revert-layer;
 overscroll-behavior-block: unset;
 ```
-
-## Syntax
 
 The `overscroll-behavior-block` property is specified as a keyword chosen from the list of values below.
 

@@ -1,14 +1,6 @@
 ---
 title: WebAssembly.Memory.prototype.grow()
 slug: WebAssembly/JavaScript_interface/Memory/grow
-tags:
-  - API
-  - JavaScript
-  - Method
-  - Reference
-  - WebAssembly
-  - grow
-  - memory
 browser-compat: javascript.builtins.WebAssembly.Memory.grow
 ---
 
@@ -44,7 +36,7 @@ The following example creates a new WebAssembly Memory instance with an initial 
 ```js
 const memory = new WebAssembly.Memory({
   initial: 1,
-  maximum: 10
+  maximum: 10,
 });
 ```
 
@@ -52,9 +44,9 @@ We can then grow the instance by one page like so:
 
 ```js
 const bytesPerPage = 64 * 1024;
-console.log(memory.buffer.byteLength / bytesPerPage);  // "1"
-console.log(memory.grow(1));                           // "1"
-console.log(memory.buffer.byteLength / bytesPerPage);  // "2"
+console.log(memory.buffer.byteLength / bytesPerPage); // "1"
+console.log(memory.grow(1)); // "1"
+console.log(memory.buffer.byteLength / bytesPerPage); // "2"
 ```
 
 Note the return value of `grow()` here is the previous number of WebAssembly pages.
@@ -67,7 +59,7 @@ Accessing the `buffer` property after calling `grow`, will yield an `ArrayBuffer
 
 ```js example-bad
 const memory = new WebAssembly.Memory({
-  initial: 1
+  initial: 1,
 });
 const oldMemoryView = new Uint8Array(memory.buffer);
 memory.grow(1);
@@ -77,7 +69,7 @@ console.log(oldMemoryView); // Uint8Array []
 
 ```js example-good
 const memory = new WebAssembly.Memory({
-  initial: 1
+  initial: 1,
 });
 memory.grow(1);
 const currentMemoryView = new Uint8Array(memory.buffer);
@@ -85,6 +77,8 @@ const currentMemoryView = new Uint8Array(memory.buffer);
 console.log(currentMemoryView); // Uint8Array(131072) [ 0, 0, 0, ... ]
 // 131072 = 64KiB * 2
 ```
+
+For a shared `Memory` instance, the initial `buffer` (which would be a [`SharedArrayBuffer`](/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) in such case) will not become detached, but rather its length will not be updated. Accesses to the `buffer` property after growing will yield a larger `SharedArrayBuffer` which may access a larger span of memory than the buffer from before growing the `Memory`. Every `SharedArrayBuffer` from the `buffer` property will all refer to the start of the same memory address range, and thus manipulate the same data.
 
 ## Specifications
 

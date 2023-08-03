@@ -1,14 +1,6 @@
 ---
 title: WebAssembly.Table.prototype.get()
 slug: WebAssembly/JavaScript_interface/Table/get
-tags:
-  - API
-  - JavaScript
-  - Method
-  - Reference
-  - WebAssembly
-  - get
-  - table
 browser-compat: javascript.builtins.WebAssembly.Table.get
 ---
 
@@ -32,7 +24,7 @@ get(index)
 ### Return value
 
 A function reference — this is an [exported WebAssembly function](/en-US/docs/WebAssembly/Exported_functions), a
-JavaScript wrapper for an underlying wasm function.
+JavaScript wrapper for an underlying Wasm function.
 
 ### Exceptions
 
@@ -51,12 +43,11 @@ compiles and instantiates the loaded table.wasm byte code using the
 references stored in the exported table.
 
 ```js
-WebAssembly.instantiateStreaming(fetch('table.wasm'))
-  .then((obj) => {
-    const tbl = obj.instance.exports.tbl;
-    console.log(tbl.get(0)());  // 13
-    console.log(tbl.get(1)());  // 42
-  });
+WebAssembly.instantiateStreaming(fetch("table.wasm")).then((obj) => {
+  const tbl = obj.instance.exports.tbl;
+  console.log(tbl.get(0)()); // 13
+  console.log(tbl.get(1)()); // 42
+});
 ```
 
 Note how you've got to include a second function invocation operator at the end of the

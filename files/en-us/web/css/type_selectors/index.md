@@ -1,13 +1,7 @@
 ---
 title: Type selectors
 slug: Web/CSS/Type_selectors
-tags:
-  - CSS
-  - HTML
-  - Node
-  - Reference
-  - Selector
-  - Selectors
+page-type: css-selector
 browser-compat: css.selectors.type
 ---
 
@@ -77,5 +71,5 @@ example|h1 {
 
 ## See also
 
-- [CSS Selectors](/en-US/docs/Web/CSS/CSS_Selectors)
+- [CSS Selectors](/en-US/docs/Web/CSS/CSS_selectors)
 - [Learn CSS: Selectors](/en-US/docs/Learn/CSS/Building_blocks/Selectors)

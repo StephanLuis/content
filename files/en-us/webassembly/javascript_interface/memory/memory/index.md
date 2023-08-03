@@ -1,11 +1,6 @@
 ---
 title: WebAssembly.Memory() constructor
 slug: WebAssembly/JavaScript_interface/Memory/Memory
-tags:
-  - Constructor
-  - JavaScript
-  - Reference
-  - WebAssembly
 browser-compat: javascript.builtins.WebAssembly.Memory.Memory
 ---
 
@@ -45,10 +40,16 @@ new WebAssembly.Memory(memoryDescriptor)
 
 ### Exceptions
 
-- If `memoryDescriptor` is an object, a {{jsxref("TypeError")}} is thrown.
-- If `initial` is not specified, a {{jsxref("TypeError")}} is thrown.
-- If `maximum` is specified and is smaller than `initial`, a {{jsxref("RangeError")}} is thrown.
-- If `shared` is present and `true`, yet `maximum` is not specified, a {{jsxref("TypeError")}} is thrown.
+- {{jsxref("TypeError")}}
+  - : Thrown if at least one of these conditions is met:
+    - `memoryDescriptor` is not an object.
+    - `initial` is not specified.
+    - `shared` is present and `true`, yet `maximum` is not specified.
+- {{jsxref("RangeError")}}
+  - : Thrown if at least one of these conditions is met:
+    - `maximum` is specified and is smaller than `initial`.
+    - `initial` exceeds 65,536 (2^16). 2^16 pages is 2^16 \* 64KiB = 4GiB bytes, which is the maximum range that a Wasm module can address, as Wasm currently only allows 32-bit addressing.
+    - Allocation fails. This may occur due to attempting to allocate too much at once, or if the User Agent is otherwise out of memory.
 
 ## Examples
 
@@ -61,11 +62,12 @@ The following example (see [memory.html](https://github.com/mdn/webassembly-exam
 ```js
 const memory = new WebAssembly.Memory({
   initial: 10,
-  maximum: 100
+  maximum: 100,
 });
 
-WebAssembly.instantiateStreaming(fetch("memory.wasm"), { js: { mem: memory } })
-.then((obj) => {
+WebAssembly.instantiateStreaming(fetch("memory.wasm"), {
+  js: { mem: memory },
+}).then((obj) => {
   const summands = new Uint32Array(memory.buffer);
   for (let i = 0; i < 10; i++) {
     summands[i] = i;
@@ -85,7 +87,7 @@ from JavaScript by passing `shared: true` in the constructor's initialization ob
 const memory = new WebAssembly.Memory({
   initial: 10,
   maximum: 100,
-  shared: true
+  shared: true,
 });
 ```
 

@@ -1,16 +1,13 @@
 ---
 title: direction
 slug: Web/CSS/direction
-tags:
-  - BiDi
-  - CSS
-  - CSS Property
-  - Reference
-  - recipe:css-property
+page-type: css-property
 browser-compat: css.properties.direction
 ---
 
 {{CSSRef}}
+
+> **Warning:** Where possible, authors are encouraged to avoid using the `direction` CSS property and use the HTML [`dir`](/en-US/docs/Web/HTML/Global_attributes#dir) global attribute instead.
 
 The **`direction`** CSS property sets the direction of text, table columns, and horizontal overflow. Use `rtl` for languages written from right to left (like Hebrew or Arabic), and `ltr` for those written from left to right (like English and most other languages).
 
@@ -95,4 +92,4 @@ blockquote {
 
 - {{Cssxref("unicode-bidi")}}
 - {{Cssxref("writing-mode")}}
-- The HTML {{htmlattrxref("dir")}} global attribute
+- The HTML [`dir`](/en-US/docs/Web/HTML/Global_attributes#dir) global attribute

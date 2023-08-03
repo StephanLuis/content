@@ -1,14 +1,13 @@
 ---
 title: share_target
 slug: Web/Manifest/share_target
-tags:
-  - Manifest
-  - Web
-  - share_target
+page-type: web-manifest-member
+status:
+  - experimental
 browser-compat: html.manifest.share_target
 ---
 
-{{QuickLinksWithSubpages("/en-US/docs/Web/Manifest")}}
+{{QuickLinksWithSubpages("/en-US/docs/Web/Manifest")}}{{SeeCompatTable}}
 
 <table class="properties">
   <tbody>
@@ -16,16 +15,12 @@ browser-compat: html.manifest.share_target
       <th scope="row">Type</th>
       <td><code>Object</code></td>
     </tr>
-    <tr>
-      <th scope="row">Mandatory</th>
-      <td>No</td>
-    </tr>
   </tbody>
 </table>
 
 The `share_target` manifest member allows installed {{Glossary("Progressive Web Apps")}} (PWAs) to be registered as a share target in the system's share dialog.
 
-Once registered and installed, a PWA that uses the Web Share Target API acts as a content sharing target, along with typical system share targets like e-mail, messengers, and other native apps that can receive shared content.
+Once registered and installed, a PWA that uses the Web Share Target API acts as a content sharing target, along with typical system share targets like email, messengers, and other native apps that can receive shared content.
 
 > **Note:** If you want to share data using the Web Share API, see [Web Share API](/en-US/docs/Web/API/Web_Share_API) and [`navigator.share()`](/en-US/docs/Web/API/Navigator/share).
 
@@ -62,7 +57,7 @@ A share target can be registered using the following `share_target` manifest mem
     "params": {
       "title": "name",
       "text": "description",
-      "url": "link",
+      "url": "link"
     }
   }
 }
@@ -73,9 +68,9 @@ When a user selects your app in the system's share dialog, your PWA is launched,
 The [URLSearchParams](/en-US/docs/Web/API/URLSearchParams) interface can be useful to handle the shared data in your application and do something with it.
 
 ```js
-const sharedName = url.searchParams.get('name');
-const sharedDescription = url.searchParams.get('description');
-const sharedLink = url.searchParams.get('link');
+const sharedName = url.searchParams.get("name");
+const sharedDescription = url.searchParams.get("description");
+const sharedLink = url.searchParams.get("link");
 ```
 
 ### Receiving share data using POST
@@ -89,7 +84,7 @@ If the share request includes one or multiple files or causes a side effect in y
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
-      "url": "link",
+      "url": "link"
     }
   }
 }
@@ -98,23 +93,25 @@ If the share request includes one or multiple files or causes a side effect in y
 You can either handle `POST` share data using server-side code, or, to provide a better experience for offline users, a `fetch` event listener can be used to intercept the HTTP request which allows to access the data in a [service worker](/en-US/docs/Web/API/Service_Worker_API).
 
 ```js
-self.addEventListener('fetch', event => {
+self.addEventListener("fetch", (event) => {
   // Regular requests not related to Web Share Target.
-  if (event.request.method !== 'POST') {
+  if (event.request.method !== "POST") {
     event.respondWith(fetch(event.request));
     return;
   }
 
-    // Requests related to Web Share Target.
-    event.respondWith((async () => {
-    const formData = await event.request.formData();
-    const link = formData.get('link') || '';
-    // Instead of the original URL `/save-bookmark/`, redirect
-    // the user to a URL returned by the `saveBookmark()`
-    // function, for example, `/`.
-    const responseUrl = await saveBookmark(link);
-    return Response.redirect(responseUrl, 303);
-  })());
+  // Requests related to Web Share Target.
+  event.respondWith(
+    (async () => {
+      const formData = await event.request.formData();
+      const link = formData.get("link") || "";
+      // Instead of the original URL `/save-bookmark/`, redirect
+      // the user to a URL returned by the `saveBookmark()`
+      // function, for example, `/`.
+      const responseUrl = await saveBookmark(link);
+      return Response.redirect(responseUrl, 303);
+    })(),
+  );
 });
 ```
 
@@ -155,7 +152,7 @@ To handle shared file data, see the `POST` example above and the [`FileReader`](
 
 ## Security & Privacy
 
-Your PWA can only act as a web share target if it has been installed. See also [How to make PWAs installable](/en-US/docs/Web/Progressive_web_apps/Installable_PWAs).
+Your PWA can only act as a web share target if it has been installed. See also [How to make PWAs installable](/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Installable_PWAs).
 
 Similar to HTML form submissions, you should be cautious about data that is sent to your application via the share target. Be sure to validate incoming data before using it.
 

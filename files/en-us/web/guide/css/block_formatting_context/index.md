@@ -1,17 +1,11 @@
 ---
 title: Block formatting context
 slug: Web/Guide/CSS/Block_formatting_context
-tags:
-  - CSS
-  - Guide
-  - NeedsBeginnerUpdate
-  - NeedsExample
-  - Reference
-  - Web
+page-type: guide
 spec-urls: https://drafts.csswg.org/css-display/#block-formatting-context
 ---
 
-{{ CSSRef }}
+{{CSSRef}}
 
 A **block formatting context** (BFC) is a part of a visual CSS rendering of a web page. It's the region in which the layout of block boxes occurs and in which floats interact with other elements.
 
@@ -27,16 +21,16 @@ A block formatting context is created by at least one of the following:
 - Block elements where {{ cssxref("overflow") }} has a value other than `visible` and `clip`.
 - {{ cssxref("display") }}`: flow-root`.
 - Elements with {{ cssxref("contain") }}`: layout`, `content`, or `paint`.
-- Flex items (direct children of the element with {{ cssxref("display") }}`: flex` or `inline-flex`) if they are neither [flex](/en-US/docs/Glossary/Flex_Container) nor [grid](/en-US/docs/Glossary/Grid_Container) nor [table](/en-US/docs/Web/CSS/CSS_Table) containers themselves.
-- Grid items (direct children of the element with {{ cssxref("display") }}`: grid` or `inline-grid`) if they are neither [flex](/en-US/docs/Glossary/Flex_Container) nor [grid](/en-US/docs/Glossary/Grid_Container) nor [table](/en-US/docs/Web/CSS/CSS_Table) containers themselves.
+- Flex items (direct children of the element with {{ cssxref("display") }}`: flex` or `inline-flex`) if they are neither [flex](/en-US/docs/Glossary/Flex_Container) nor [grid](/en-US/docs/Glossary/Grid_Container) nor [table](/en-US/docs/Web/CSS/CSS_table) containers themselves.
+- Grid items (direct children of the element with {{ cssxref("display") }}`: grid` or `inline-grid`) if they are neither [flex](/en-US/docs/Glossary/Flex_Container) nor [grid](/en-US/docs/Glossary/Grid_Container) nor [table](/en-US/docs/Web/CSS/CSS_table) containers themselves.
 - Multicol containers (elements where {{ cssxref("column-count") }} or {{ cssxref("column-width") }} isn't `auto`, including elements with `column-count: 1`).
-- {{ cssxref("column-span") }}`: all` should always create a new formatting context, even when the `column-span: all` element isn't contained by a multicol container ([Spec change](https://github.com/w3c/csswg-drafts/commit/a8634b96900279916bd6c505fda88dda71d8ec51), [Chrome bug](https://bugs.chromium.org/p/chromium/issues/detail?id=709362)).
+- {{ cssxref("column-span") }}`: all` should always create a new formatting context, even when the `column-span: all` element isn't contained by a multicol container ([Spec change](https://github.com/w3c/csswg-drafts/commit/a8634b96900279916bd6c505fda88dda71d8ec51), [Chrome bug](https://crbug.com/709362)).
 
 Formatting contexts affect layout, but typically, we create a new block formatting context for the positioning and clearing floats rather than changing the layout, because an element that establishes a new block formatting context will:
 
 - contain internal floats.
 - exclude external floats.
-- suppress [margin collapsing](/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing).
+- suppress [margin collapsing](/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing).
 
 > **Note:** A Flex/Grid container({{ cssxref("display") }}: flex/grid/inline-flex/inline-grid) establishes a new Flex/Grid formatting context, which is similar to block formatting context except layout. There's no floating children available inside a flex/grid container, but exclude external floats and suppress margin collapsing still works.
 
@@ -48,7 +42,7 @@ Make float content and alongside content the same height.
 
 Let's have a look at a couple of these in order to see the effect creating a new BFC.
 
-In the following example, we have a floated element inside a `<div>` with a `border` applied. The content of that `<div>` has floated alongside the floated element. As the content of the float is taller than the content alongside it, the border of the `<div>` now runs through the float. As explained in the [guide to in-flow and out of flow elements](/en-US/docs/Web/CSS/CSS_Flow_Layout/In_Flow_and_Out_of_Flow), the float has been taken out of flow so the `background` and `border` of the `<div>` only contain the content and not the float.
+In the following example, we have a floated element inside a `<div>` with a `border` applied. The content of that `<div>` has floated alongside the floated element. As the content of the float is taller than the content alongside it, the border of the `<div>` now runs through the float. As explained in the [guide to in-flow and out of flow elements](/en-US/docs/Web/CSS/CSS_flow_layout/In_flow_and_out_of_flow), the float has been taken out of flow so the `background` and `border` of the `<div>` only contain the content and not the float.
 
 **using `overflow: auto`**
 
@@ -165,24 +159,22 @@ Rather than inline-blocks with width:\<percentage>, in this case we don't have t
 
 Note that flexbox is a more efficient way to implement multi-column layout in modern CSS.
 
-### Margin collapsing
+### Prevent margin collapsing
 
-Creating a new BFC to avoid the [margin collapsing](/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing) between two neighbor div:
+You can create a new BFC to avoid [margin collapsing](/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing) between two neighbor elements.
 
-#### HTML
+#### Margin collapsing example
+
+In this example we have two adjacent {{HTMLElement("div")}} elements, which each have a vertical margin of `10px`. Because of margin collapsing, the vertical gap between them is 10 pixels, not the 20 we might expect.
 
 ```html
 <div class="blue"></div>
-<div class="red-outer">
-  <div class="red-inner">red inner</div>
-</div>
+<div class="red"></div>
 ```
-
-#### CSS
 
 ```css
 .blue,
-.red-inner {
+.red {
   height: 50px;
   margin: 10px 0;
 }
@@ -191,13 +183,46 @@ Creating a new BFC to avoid the [margin collapsing](/en-US/docs/Web/CSS/CSS_Box_
   background: blue;
 }
 
-.red-outer {
-  overflow: hidden;
+.red {
   background: red;
 }
 ```
 
-{{EmbedLiveSample("Margin_collapsing", 120, 170)}}
+{{EmbedLiveSample("Margin collapsing example", 120, 170)}}
+
+#### Preventing margin collapsing
+
+In this example we wrap the second `<div>` in an outer one, to create a new BFC and prevent margin collapsing.
+
+```html
+<div class="blue"></div>
+<div class="outer">
+  <div class="red"></div>
+</div>
+```
+
+```css
+.blue,
+.red {
+  height: 50px;
+  margin: 10px 0;
+}
+
+.blue {
+  background: blue;
+}
+
+.red {
+  background: red;
+}
+
+.outer {
+  overflow: hidden;
+  background: transparent;
+}
+```
+
+{{EmbedLiveSample("Preventing margin collapsing", 120, 170)}}
 
 ## Specifications
 
@@ -211,11 +236,11 @@ Creating a new BFC to avoid the [margin collapsing](/en-US/docs/Web/CSS/CSS_Box_
   - [At-rules](/en-US/docs/Web/CSS/At-rule)
   - [Comments](/en-US/docs/Web/CSS/Comments)
   - [Specificity](/en-US/docs/Web/CSS/Specificity)
-  - [Inheritance](/en-US/docs/Web/CSS/inheritance)
-  - [Box model](/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model)
+  - [Inheritance](/en-US/docs/Web/CSS/Inheritance)
+  - [Box model](/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model)
   - [Layout modes](/en-US/docs/Web/CSS/Layout_mode)
   - [Visual formatting models](/en-US/docs/Web/CSS/Visual_formatting_model)
-  - [Margin collapsing](/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)
+  - [Margin collapsing](/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing)
   - Values
     - [Initial values](/en-US/docs/Web/CSS/initial_value)
     - [Computed values](/en-US/docs/Web/CSS/computed_value)

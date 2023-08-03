@@ -2,9 +2,6 @@
 title: AbstractRange
 slug: Web/API/AbstractRange
 page-type: web-api-interface
-tags:
-  - Interface
-  - Reference
 browser-compat: api.AbstractRange
 ---
 
@@ -12,11 +9,11 @@ browser-compat: api.AbstractRange
 
 The **`AbstractRange`** abstract interface is the base class upon which all {{Glossary("DOM")}} range types are defined. A **range** is an object that indicates the start and end points of a section of content within the document.
 
-> **Note:** As an abstract interface, you will not directly instantiate an object of type `AbstractRange`. Instead, you will use the {{domxref("Range")}} or {{domxref("StaticRange")}} interfaces. To understand the difference between those two interfaces, and how to choose which is appropriate for your needs.
+> **Note:** As an abstract interface, you will not directly instantiate an object of type `AbstractRange`. Instead, you will use the {{domxref("Range")}} or {{domxref("StaticRange")}} interfaces. To understand the difference between those two interfaces, and how to choose which is appropriate for your needs, consult each interface's documentation.
 
 {{InheritanceDiagram}}
 
-## Properties
+## Instance properties
 
 - {{domxref("AbstractRange.collapsed", "collapsed")}} {{ReadOnlyInline}}
   - : A Boolean value which is `true` if the range is _collapsed_. A collapsed range is a range whose start position and end position are the same, resulting in a zero-character-long range.
@@ -29,7 +26,7 @@ The **`AbstractRange`** abstract interface is the base class upon which all {{Gl
 - {{domxref("AbstractRange.startOffset", "startOffset")}} {{ReadOnlyInline}}
   - : An integer value indicating the offset, in characters, from the beginning of the node's contents to the last character of the contents referred to by the range object. This value must be less than the length of the node indicated in `startContainer`.
 
-## Methods
+## Instance methods
 
 _The `AbstractRange` interface does provide any methods._
 

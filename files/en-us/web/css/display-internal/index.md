@@ -1,13 +1,7 @@
 ---
 title: <display-internal>
 slug: Web/CSS/display-internal
-tags:
-  - CSS
-  - CSS Data Type
-  - CSS Display
-  - Data Type
-  - Reference
-  - display-internal
+page-type: css-type
 browser-compat:
   - css.properties.display.table_values
   - css.properties.display.ruby_values

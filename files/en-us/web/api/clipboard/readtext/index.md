@@ -1,22 +1,8 @@
 ---
-title: Clipboard.readText()
+title: "Clipboard: readText() method"
+short-title: readText()
 slug: Web/API/Clipboard/readText
 page-type: web-api-instance-method
-tags:
-  - API
-  - Async Clipboard API
-  - Clip
-  - Clipboard
-  - Clipboard API
-  - Cut
-  - Editing
-  - Method
-  - Pasteboard
-  - Reference
-  - Text
-  - copy
-  - paste
-  - readText
 browser-compat: api.Clipboard.readText
 ---
 
@@ -59,8 +45,9 @@ This example retrieves the textual contents of the clipboard and inserts the ret
 text into an element's contents.
 
 ```js
-navigator.clipboard.readText().then(
-  (clipText) => document.getElementById("outbox").innerText = clipText);
+navigator.clipboard
+  .readText()
+  .then((clipText) => (document.getElementById("outbox").innerText = clipText));
 ```
 
 ## Specifications

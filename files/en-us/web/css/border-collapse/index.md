@@ -1,13 +1,7 @@
 ---
 title: border-collapse
 slug: Web/CSS/border-collapse
-tags:
-  - CSS
-  - CSS Borders
-  - CSS Property
-  - CSS Tables
-  - Reference
-  - recipe:css-property
+page-type: css-property
 browser-compat: css.properties.border-collapse
 ---
 
@@ -17,7 +11,7 @@ The **`border-collapse`** [CSS](/en-US/docs/Web/CSS) property sets whether cells
 
 {{EmbedInteractiveExample("pages/css/border-collapse.html")}}
 
-When cells are collapsed, the {{cssxref("border-style")}} value of `inset` behaves like `groove`, and `outset` behaves like `ridge`.
+When cells are collapsed, the {{cssxref("border-style")}} value of `inset` behaves like `ridge`, and `outset` behaves like `groove`.
 
 When cells are separated, the distance between cells is defined by the {{cssxref("border-spacing")}} property.
 

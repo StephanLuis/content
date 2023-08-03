@@ -2,11 +2,6 @@
 title: ANGLE_instanced_arrays
 slug: Web/API/ANGLE_instanced_arrays
 page-type: web-api-interface
-tags:
-  - API
-  - Reference
-  - WebGL
-  - WebGL extension
 browser-compat: api.ANGLE_instanced_arrays
 ---
 
@@ -27,7 +22,7 @@ This extension exposes one new constant, which can be used in the {{domxref("Web
 - `ext.VERTEX_ATTRIB_ARRAY_DIVISOR_ANGLE`
   - : Returns a {{domxref("WebGL_API/Types", "GLint")}} describing the frequency divisor used for instanced rendering when used in the {{domxref("WebGLRenderingContext.getVertexAttrib()", "gl.getVertexAttrib()")}} as the `pname` parameter.
 
-## Methods
+## Instance methods
 
 This extension exposes three new methods.
 
@@ -57,7 +52,7 @@ gl.vertexAttribPointer(
   gl.FLOAT,
   false,
   0,
-  0
+  0,
 );
 
 // build position buffer
@@ -66,7 +61,7 @@ for (const instance of instances) {
   instancePositions.push(
     instance.position.x,
     instance.position.y,
-    instance.position.z
+    instance.position.z,
   );
 }
 const instancePositionBuffer = createWebGLBufferFromData(instancePositions);
@@ -80,7 +75,7 @@ gl.vertexAttribPointer(
   gl.FLOAT,
   false,
   0,
-  0
+  0,
 );
 
 // mark the attribute as instanced and advance it every single(1) instance rather than every vertex
@@ -91,7 +86,7 @@ ext.drawArraysInstancedANGLE(
   gl.TRIANGLES,
   0,
   numGeometryVertices,
-  instances.length
+  instances.length,
 );
 ```
 

@@ -1,19 +1,13 @@
 ---
 title: sign()
 slug: Web/CSS/sign
-tags:
-  - CSS
-  - CSS Function
-  - Function
-  - Layout
-  - Reference
-  - Web
-  - sign
-  - Experimental
-spec-urls: https://drafts.csswg.org/css-values/#sign-funcs
+page-type: css-function
+status:
+  - experimental
+browser-compat: css.types.sign
 ---
 
-{{CSSRef}}
+{{CSSRef}}{{SeeCompatTable}}
 
 The **`sign()`** [CSS](/en-US/docs/Web/CSS) [function](/en-US/docs/Web/CSS/CSS_Functions) contains one calculation, and returns `-1` if the numeric value of the argument is negative, `+1` if the numeric value of the argument is positive, `0⁺` if the numeric value of the argument is 0⁺, and `0⁻` if the numeric value of the argument is 0⁻.
 
@@ -22,8 +16,8 @@ The **`sign()`** [CSS](/en-US/docs/Web/CSS) [function](/en-US/docs/Web/CSS/CSS_F
 ## Syntax
 
 ```css
-/* property: sign(expression) */
-top: sign(--value);
+/* property: sign( expression ) */
+top: sign(20vh - 100px);
 ```
 
 ### Parameters
@@ -61,7 +55,7 @@ div {
 
 ### Position direction
 
-Another usecase is to control the {{cssxref("position")}} of the element. Either a positive or a negative value.
+Another use case is to control the {{cssxref("position")}} of the element. Either a positive or a negative value.
 
 ```css
 div {
@@ -73,6 +67,10 @@ div {
 ## Specifications
 
 {{Specifications}}
+
+## Browser compatibility
+
+{{Compat}}
 
 ## See also
 

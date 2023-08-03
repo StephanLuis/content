@@ -1,13 +1,7 @@
 ---
 title: system
 slug: Web/CSS/@counter-style/system
-tags:
-  - "@counter-style"
-  - At-rule descriptor
-  - CSS
-  - CSS Counter Styles
-  - CSS Descriptor
-  - Reference
+page-type: css-at-rule-descriptor
 browser-compat: css.at-rules.counter-style.system
 ---
 
@@ -77,17 +71,7 @@ This may take one of three forms:
 
 ## Formal syntax
 
-```
-cyclic                             |
-numeric                            |
-alphabetic                         |
-symbolic                           |
-additive                           |
-[ fixed <integer>? ]               |
-[ extends <counter-style-name> ]
-
-<counter-style-name> = <custom-ident>
-```
+{{csssyntax}}
 
 ## Examples
 
@@ -95,7 +79,7 @@ additive                           |
 
 If your browser supports it, this example will render a list like this:
 
-```
+```plain
 ◉ One
 ◉ Two
 ◉ Three
@@ -131,7 +115,7 @@ ul {
 
 If your browser supports it, this example will render a list like this:
 
-```
+```plain
 ➀ One
 ➁ Two
 ➂ Three
@@ -171,7 +155,7 @@ ul {
 
 If your browser supports it, this example will render a list like this:
 
-```
+```plain
   a. One
   b. Two
   c. Three
@@ -217,7 +201,7 @@ ul {
 
 If your browser supports it, this example will render a list like this:
 
-```
+```plain
  a. One
  b. Two
  c. Three
@@ -263,7 +247,7 @@ ul {
 
 If your browser supports it, this example will render a list like this:
 
-```
+```plain
  b. One
  c. Two
 ba. Three
@@ -366,8 +350,20 @@ This example renders a list using Roman numerals. Notice that a `range` is speci
 @counter-style upper-roman {
   system: additive;
   range: 1 3999;
-  additive-symbols: 1000 M, 900 CM, 500 D, 400 CD, 100 C, 90 XC, 50 L, 40 XL,
-    10 X, 9 IX, 5 V, 4 IV, 1 I;
+  additive-symbols:
+    1000 M,
+    900 CM,
+    500 D,
+    400 CD,
+    100 C,
+    90 XC,
+    50 L,
+    40 XL,
+    10 X,
+    9 IX,
+    5 V,
+    4 IV,
+    1 I;
 }
 
 ul {

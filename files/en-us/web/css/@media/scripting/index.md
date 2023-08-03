@@ -1,18 +1,13 @@
 ---
 title: scripting
 slug: Web/CSS/@media/scripting
-tags:
-  - "@media"
-  - CSS
-  - Media Queries
-  - Reference
-  - media feature
+page-type: css-media-feature
 browser-compat: css.at-rules.media.scripting
 ---
 
 {{CSSRef}}
 
-The **`scripting`** [CSS](/en-US/docs/Web/CSS) [media feature](/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#media_features) can be used to test whether scripting (such as JavaScript) is available.
+The **`scripting`** [CSS](/en-US/docs/Web/CSS) [media feature](/en-US/docs/Web/CSS/@media#media_features) can be used to test whether scripting (such as JavaScript) is available.
 
 ## Syntax
 
@@ -77,5 +72,5 @@ p {
 
 ## See also
 
-- [Using Media Queries](/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 - [@media](/en-US/docs/Web/CSS/@media)
+- [Using media queries](/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)

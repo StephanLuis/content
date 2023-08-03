@@ -1,10 +1,7 @@
 ---
 title: <radialGradient>
 slug: Web/SVG/Element/radialGradient
-tags:
-  - Element
-  - SVG
-  - SVG Gradient
+page-type: svg-element
 browser-compat: svg.elements.radialGradient
 ---
 
@@ -12,7 +9,7 @@ browser-compat: svg.elements.radialGradient
 
 The **`<radialGradient>`** element lets authors define radial gradients that can be applied to fill or stroke of graphical elements.
 
-> **Note:** Don't be confused with CSS {{cssxref('radial-gradient()')}} as CSS gradients can only apply to HTML elements where SVG gradient can only apply to SVG elements.
+> **Note:** Don't be confused with CSS {{cssxref('gradient/radial-gradient', 'radial-gradient()')}} as CSS gradients can only apply to HTML elements where SVG gradient can only apply to SVG elements.
 
 ## Example
 
